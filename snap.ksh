@@ -273,7 +273,7 @@ mkd $DST
 
 URL="${PROTO}://${MIRROR}/pub/OpenBSD/${VER}/${MACHINE}"
 
-msg "${white}Fetching from: ${green}${URL}"
+msg "${white}Fetching from repo: ${green}${URL}"
 
 (
   cd $DST
@@ -303,9 +303,11 @@ msg "${white}Fetching from: ${green}${URL}"
   fi
 
 #TODO mount msdos volume and copy umg files.
+# It is likeley I will never do this. 
+
 
   if [ $EXTRACT_ONLY == false ]; then
-    msg "Fetching bsds"
+    msg "Fetching bsds..."
     for bsd in ${bsds[@]}; do
       fetch "${URL}/${bsd}" || error "Can't find bsds at ${URL}"
     done
@@ -350,7 +352,7 @@ msg "${white}Fetching from: ${green}${URL}"
       done
     fi
   done
-
+ # # MERGE THE STOPS
   if [ $MERGE ]; then
     MERG_OPT=""
     if [ $SKIP_SIGN == true ]; then
@@ -365,6 +367,7 @@ msg "${white}Fetching from: ${green}${URL}"
     echo "Don't forget to run:\n\tsysmerge -s ${DST}/etc${SETVER}.tgz -x ${DST}/xetc${SETVER}.tgz"
   fi
 
+## ADDED THIS FOR MY VIRUTAL BOXES N STUFF
   if [ "${VIRTUAL}" == "QEMU" ]; then
     msg "Running as VM, please disable mpbios"
     config -e -f /bsd
