@@ -86,6 +86,14 @@ function mkd {
     mkdir -p $1
   fi
 }
+#  Saving this for a later date. 
+##function ksd {
+#   if [ ! -e $2 ]; then
+#      msg "mkdir: ${2}
+#       mkdir -p $2
+#
+#    fi
+#
 
 function msg {
   if [ $INTERACTIVE == true ]; then
